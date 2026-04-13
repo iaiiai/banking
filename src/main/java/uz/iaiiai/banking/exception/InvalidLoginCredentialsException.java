@@ -1,7 +1,7 @@
 package uz.iaiiai.banking.exception;
 
-public class InvalidLoginCredentials extends RuntimeException {
-    public InvalidLoginCredentials() {
+public class InvalidLoginCredentialsException extends RuntimeException {
+    public InvalidLoginCredentialsException() {
         super("Invalid login credentials");
     }
 }

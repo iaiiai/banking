@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-public class P2PTransactionRequestDto {
+public class TransactionP2PRequestDto {
 
     @NotBlank
     private final String recipientUsername;

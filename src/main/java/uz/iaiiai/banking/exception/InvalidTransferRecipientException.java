@@ -1,7 +1,7 @@
 package uz.iaiiai.banking.exception;
 
-public class InvalidTransferRecieverException extends RuntimeException {
-    public InvalidTransferRecieverException() {
-        super("Invalid transfer receiver");
+public class InvalidTransferRecipientException extends RuntimeException {
+    public InvalidTransferRecipientException() {
+        super("Invalid transfer recipient");
     }
 }

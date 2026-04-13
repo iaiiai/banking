@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-public class DepositTransactionRequestDto {
+public class TransactionDepositRequestDto {
     @NotNull
     @DecimalMin(value = "0.0", inclusive = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING)

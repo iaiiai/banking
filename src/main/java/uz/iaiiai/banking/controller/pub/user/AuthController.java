@@ -1,4 +1,4 @@
-package uz.iaiiai.banking.controller.user;
+package uz.iaiiai.banking.controller.pub.user;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class AuthController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public UserLoginResponseDto handleLogin(
+    public UserLoginResponseDto login(
             @Valid
             @RequestBody
             UserAuthDto
@@ -28,7 +28,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public UserRegisterResponseDto handleRegister(
+    public UserRegisterResponseDto register(
            @Valid
            @RequestBody
            UserAuthDto

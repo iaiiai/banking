@@ -1,4 +1,4 @@
-package uz.iaiiai.banking.controller.user;
+package uz.iaiiai.banking.controller.pub.user;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,16 +14,6 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public List<UserResponseDto> getAll(
-            @RequestParam(defaultValue = "0")
-            int page,
-            @RequestParam(defaultValue = "10")
-            int size
-    ) {
-        return userService.getAll(page, size);
-    }
 
     @GetMapping("/{username}")
     @PreAuthorize("@userSecurity.isOwner(#username, authentication) or hasRole('ADMIN')")
@@ -32,7 +22,7 @@ public class UserController {
             String
                     username
     ) {
-        return userService.get(username);
+        return userService.getUser(username);
     }
 
 }

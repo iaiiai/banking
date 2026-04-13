@@ -1,4 +1,4 @@
-package uz.iaiiai.banking.controller.ticket;
+package uz.iaiiai.banking.controller.pub.ticket;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -13,11 +13,11 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/ticket")
 public class TicketController {
     private final TicketService ticketService;
 
-    @PostMapping("/ticket")
+    @PostMapping
     public TicketResponseDto createTicket(
             @RequestBody @Valid TicketCreateRequestDto dto,
             @AuthenticationPrincipal CustomUserDetails auth
@@ -26,7 +26,16 @@ public class TicketController {
         return ticketService.createTicket(dto, userId);
     }
 
-    @GetMapping("/ticket/{ticketId}")
+    @PatchMapping("/{ticketId}")
+    public TicketResponseDto closeTicket(
+            @PathVariable Long ticketId,
+            @AuthenticationPrincipal CustomUserDetails auth
+    ) {
+        Long userId = auth.getId();
+        return ticketService.closeTicket(ticketId, userId);
+    }
+
+    @GetMapping("/{ticketId}")
     public TicketResponseDto getTicket(
             @PathVariable Long ticketId,
             @AuthenticationPrincipal CustomUserDetails auth
@@ -35,11 +44,11 @@ public class TicketController {
         return ticketService.getTicket(ticketId, userId);
     }
 
-    @GetMapping("/ticket")
-    public List<TicketResponseDto> getAllTickets(
+    @GetMapping
+    public List<TicketResponseDto> getTickets(
             @AuthenticationPrincipal CustomUserDetails auth
     ) {
         Long userId = auth.getId();
-        return ticketService.getAllTicketsByUser(userId);
+        return ticketService.getTickets(userId);
     }
 }

@@ -1,4 +1,4 @@
-package uz.iaiiai.banking.controller.ticket;
+package uz.iaiiai.banking.controller.pub.ticket;
 
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.Message;
@@ -32,7 +32,7 @@ public class TicketRealtimeChatController {
         Long senderId = auth.getId();
         System.out.println("Message from " + auth.getUsername());
         System.out.println("Headers >>" + msg.getHeaders());
-        TicketMessageResponseDto message = ticketService.sendMessage(dto, ticketId, senderId);
+        TicketMessageResponseDto message = ticketService.sendTicketMessage(dto, ticketId, senderId);
         messagingTemplate.convertAndSend(
                 "/topic/ticket/" + ticketId,
                 message

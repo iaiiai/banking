@@ -1,11 +1,18 @@
 package uz.iaiiai.banking.model.entity;
 
 import jakarta.persistence.*;
-import uz.iaiiai.banking.model.enumeration.ChatStatus;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import uz.iaiiai.banking.model.enumeration.TicketStatus;
+
+import java.util.List;
 
 @Entity
-@Table(name = "chats")
-public class Chat {
+@Table(name = "tickets")
+@NoArgsConstructor
+@Data
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +24,12 @@ public class Chat {
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private ChatStatus status;
+    private TicketStatus status;
 
-    
+    @Column(name = "subject", nullable = false)
+    private String subject;
+
+    @OneToMany(mappedBy = "ticket")
+    @OrderBy("timestamp ASC")
+    private List<TicketMessage> messages;
 }

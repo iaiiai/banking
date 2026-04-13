@@ -1,4 +1,4 @@
-package uz.iaiiai.banking.controller.transaction;
+package uz.iaiiai.banking.controller.pub.transaction;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -20,27 +20,27 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/transaction")
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @PostMapping("/transaction/p2p")
-    public TransactionTransferResponseDto handleP2P(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody @Valid TransactionP2PRequestDto dto) {
+    @PostMapping("/p2p")
+    public TransactionTransferResponseDto createP2PTransaction(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody @Valid TransactionP2PRequestDto dto) {
         return transactionService.createP2PTransaction(dto, userDetails.getId());
     }
 
-    @PostMapping("/transaction/payable")
-    public TransactionPayableResponseDto handlePayable(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody TransactionPayableRequestDto dto) {
+    @PostMapping("/payable")
+    public TransactionPayableResponseDto createPayableTransaction(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody TransactionPayableRequestDto dto) {
         return transactionService.createPayableTransaction(dto, userDetails.getId());
     }
 
-    @PostMapping("/transaction/deposit")
-    public TransactionDepositResponseDto handleDeposit(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody @Valid TransactionDepositRequestDto dto) {
+    @PostMapping("/deposit")
+    public TransactionDepositResponseDto createDepositTransaction(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody @Valid TransactionDepositRequestDto dto) {
         return transactionService.createDepositTransaction(dto, userDetails.getId());
     }
 
-    @GetMapping("/transaction")
-    public List<TransactionResponseDto> handleAllFilteredBetweenTime(
+    @GetMapping
+    public List<TransactionResponseDto> getTransactionInPeriod(
             @RequestParam
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
             LocalDateTime from,
@@ -53,6 +53,6 @@ public class TransactionController {
             CustomUserDetails auth
     ) {
         String username = auth.getUsername();
-        return transactionService.getByTimestampBetween(from, to, username);
+        return transactionService.getTransactionsInPeriod(from, to, username);
     }
 }

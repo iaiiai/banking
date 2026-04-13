@@ -1,6 +1,6 @@
 package uz.iaiiai.banking.model.enumeration;
 
-public enum Status {
+public enum TransactionStatus {
     COMPLETED,
     PENDING,
     FAILED

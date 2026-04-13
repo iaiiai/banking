@@ -1,7 +1,7 @@
 package uz.iaiiai.banking.exception;
 
-public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException() {
-        super("User not found");
+public class RecipientNotFoundException extends RuntimeException {
+    public RecipientNotFoundException() {
+        super("Recipient not found");
     }
 }

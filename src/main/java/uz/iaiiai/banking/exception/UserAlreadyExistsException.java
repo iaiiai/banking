@@ -1,7 +1,7 @@
 package uz.iaiiai.banking.exception;
 
-public class UserFoundException extends RuntimeException {
-    public UserFoundException() {
+public class UserAlreadyExistsException extends RuntimeException {
+    public UserAlreadyExistsException() {
         super("User already registered");
     }
 }

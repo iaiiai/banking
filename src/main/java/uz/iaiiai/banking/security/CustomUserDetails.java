@@ -11,7 +11,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CustomUser implements UserDetails {
+public class CustomUserDetails implements UserDetails {
     private final Long id;
     private final String username;
     private final String password;

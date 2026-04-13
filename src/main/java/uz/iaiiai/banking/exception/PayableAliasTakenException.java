@@ -1,7 +1,7 @@
 package uz.iaiiai.banking.exception;
 
-public class PayableAliasTaken extends RuntimeException {
-    public PayableAliasTaken() {
+public class PayableAliasTakenException extends RuntimeException {
+    public PayableAliasTakenException() {
         super("Payable alias has been already taken");
     }
 }

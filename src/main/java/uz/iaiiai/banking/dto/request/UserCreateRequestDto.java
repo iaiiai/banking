@@ -5,7 +5,7 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class CreateUserRequestDto {
+public class UserCreateRequestDto {
     @NotBlank
     private String username;
     @NotBlank

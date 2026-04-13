@@ -1,8 +1,9 @@
-package uz.iaiiai.banking.security.auth;
+package uz.iaiiai.banking.security.authentication;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import uz.iaiiai.banking.model.entity.User;
@@ -14,9 +15,17 @@ import java.util.function.Function;
 
 @Component
 public class JwtService {
-    @Value("${app.security.jwt-secret}")
-    private static String SECRET;
-    private static final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
+    private String secret;
+    private final Key key;
+
+    @Autowired
+    public JwtService(
+            @Value("${app.security.jwt-secret}")
+            String secret
+    ) {
+        this.secret = secret;
+        this.key = Keys.hmacShaKeyFor(secret.getBytes());
+    }
 
     public String generateToken(User user) {
         return Jwts.builder()

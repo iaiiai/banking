@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 @Data
 @AllArgsConstructor
-public class CreatePayableRequestDto {
+public class PayableRequestDto {
 
     @NotBlank
     private final String alias;

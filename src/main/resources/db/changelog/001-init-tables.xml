@@ -1,0 +1,207 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="sss (generated)" id="1776079633783-1">
+        <createTable tableName="tickets">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="tickets_pkey"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-2">
+        <createTable tableName="transactions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="transactions_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT"/>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric(38, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="recipient_wallet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sender_wallet_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-3">
+        <createTable tableName="wallets">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="wallets_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT"/>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="numeric(38, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payable_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-4">
+        <createTable tableName="payables">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payables_pkey"/>
+            </column>
+            <column name="alias" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="picture_url" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(38, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-5">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="roles_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-6">
+        <createTable tableName="ticket_messages">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ticket_messages_pkey"/>
+            </column>
+            <column name="content" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="sender_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ticket_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-7">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT"/>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-8">
+        <addUniqueConstraint columnNames="payable_id" constraintName="uk2y3jkvguvgi2ijrmi0ovhnxf8" tableName="wallets"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-9">
+        <addUniqueConstraint columnNames="user_id" constraintName="uksswfdl9fq40xlkove1y5kc7kv" tableName="wallets"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-10">
+        <addUniqueConstraint columnNames="alias" constraintName="ukrhuv1koneokr087ahite96jlm" tableName="payables"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-11">
+        <addUniqueConstraint columnNames="name" constraintName="ukofx66keruapi6vyqpv6f2or37" tableName="roles"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-12">
+        <addUniqueConstraint columnNames="username" constraintName="ukr43af9ap4edm43mmtq01oddj6" tableName="users"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-13">
+        <addForeignKeyConstraint baseColumnNames="sender_id" baseTableName="ticket_messages" constraintName="fk3cdue8h4un44cfo9q4tq4mt4n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-14">
+        <addForeignKeyConstraint baseColumnNames="payable_id" baseTableName="wallets" constraintName="fk3um7l3gvd07khjmwaqctlg294" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payables" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="tickets" constraintName="fk4eqsebpimnjen0q46ja6fl2hl" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-16">
+        <addForeignKeyConstraint baseColumnNames="ticket_id" baseTableName="ticket_messages" constraintName="fk8c9vw45c3j5m6arnwp4c3iaby" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="tickets" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-17">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="wallets" constraintName="fkc1foyisidw7wqqrkamafuwn4e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-18">
+        <addForeignKeyConstraint baseColumnNames="sender_wallet_id" baseTableName="transactions" constraintName="fke0ppnh35227iut4l5u6bgghyw" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="wallets" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-19">
+        <addForeignKeyConstraint baseColumnNames="recipient_wallet_id" baseTableName="transactions" constraintName="fkm4308i4wovsr4hcgf20y0iopg" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="wallets" validate="true"/>
+    </changeSet>
+    <changeSet author="sss (generated)" id="1776079633783-20">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="users" constraintName="fkp56c1712k691lhsyewcssf40f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="roles" validate="true"/>
+    </changeSet>
+    <changeSet id="init-roles-users-wallets" author="you">
+        <sql>
+            INSERT INTO roles(name) VALUES ('USER');
+            INSERT INTO roles(name) VALUES ('ADMIN');
+            INSERT INTO roles(name) VALUES ('SYSTEM');
+
+            WITH sys_user AS (
+            INSERT INTO users(username, password, role_id, created_at, updated_at)
+            VALUES (
+                'system',
+                '$2a$12$EpcnnCB4fs/aTkOA71/ZtOpWPQ.pGuO1X7OkWyjQ3UlxoSLKgg/gC',
+                (SELECT id FROM roles WHERE name = 'SYSTEM'),
+                CURRENT_TIMESTAMP,
+                CURRENT_TIMESTAMP
+                )
+                RETURNING id
+                )
+            INSERT INTO wallets(balance, user_id, type, created_at, updated_at)
+            SELECT 1000000000, id, 'SYSTEM', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+            FROM sys_user;
+        </sql>
+    </changeSet>
+</databaseChangeLog>
